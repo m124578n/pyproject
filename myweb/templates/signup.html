@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>會員註冊</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <script src="{% static 'js/eye.js' %}"></script>
+    <link rel="shortcut icon" href="{%  static images/reddit.png % }" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+  </head>
+
+  <body>
+       <!-- Navbar (sit on top) -->
+  <div class="w3-top" >
+    <div class="w3-bar w3-black  w3-padding-16 w3-card" id="myNavbar" style="height: 90px;" >
+      <div class="w3-bar-left" >
+        <a href="#home" class="w3-bar-item"><img  src="{% static 'images/reddit.png' %}" alt="logo" width="30" height="30"></a>
+        <a href="#home" class="w3-bar-item w3-button" style="font-size: larger; font-weight: bold;"><b>Neuromancer</b></a>
+      </div>
+    
+      <!-- Right-sided navbar links -->
+      <a href="#home" class="w3-bar-item w3-button" style="margin-left: 410px; line-height: 40px; " ><h2><b>會員註冊</b> </h2></a>
+      <div class="w3-right w3-hide-small" >
+          <a href="login" class="w3-bar-item w3-button"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;會員登入</a>
+          <a href="/" class="w3-bar-item w3-button"><i class="fa fa-house-chimney fa-xl"></i>&nbsp;回首頁</a>
+        </div>
+     
+    </div>
+  </div>
+      <!-- main  -->
+    <div class=" text-center main" style="margin-top: 100px;">
+    <main class="form-signup">
+      <form method=post  autocomplete="off">
+        <p><img  src="{%  static 'images/reddit.png' %}" alt="logo" width="50" height="50"></p>
+        <h1 class="h3 mb-3 fw-normal"><b>會員註冊</b> </h1>
+           <!-- 帳號輸入框 -->
+       <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text" >
+            <i class="fa fa-user"></i>
+          </span>
+          <div class="form-floating" style=" width: 263px;">
+            <input type="text" name="account" class="form-control" placeholder="請輸入帳號" required >
+            <label for="floatingInput">請輸入帳號</label>
+          </div>
+        </div>  
+      </div>
+         <!-- 密碼輸入框 -->
+       <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text" >
+            <i class="fa fa-lock"></i>
+          </span>
+          <div class="form-floating" style=" width: 221px;">
+          <input type="password" name="password" class="pwd form-control" placeholder="請輸入密碼" required> 
+          <label for="floatingInput">請輸入密碼</label>
+        </div>
+          <span class="input-group-text " >
+            <a  style="color: black;" onclick="show()" >
+              <i class="fa fa-eye-slash icon" ></i>
+            </a>
+          </span>
+        </div>          
+     </div>
+       <!-- 姓名輸入框 -->
+     <div class="form-group">
+      <div class="input-group mb-3 mt-3">
+        <span class="input-group-text" >
+          <i class="fa fa-signature"></i>
+        </span>
+        <div class="form-floating" style=" width: 257.5px;">
+         <input type="text" name="username" class="form-control" placeholder="請輸入姓名">
+         <label for="floatingInput">請輸入姓名</label>
+        </div>
+      </div>  
+    </div>
+    <!-- 生日輸入框 -->
+    <div class="form-group">
+        <div class="input-group mb-3 mt-3">
+          <span class="input-group-text" >
+            <i class="fa fa-calendar"></i>
+          </span>
+          <div  style=" width: 263px;">
+           <input type="date" name="username" class="form-control" >
+          </div>
+        </div>  
+      </div>
+      <!-- 電話輸入框 -->
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text" >
+            <i class="fa fa-phone"></i>
+          </span>
+          <div class="form-floating" style=" width: 261px;">
+            <input type="text" name="account" class="form-control" placeholder="請輸入電話" required >
+            <label for="floatingInput">請輸入電話</label>
+          </div>
+        </div>  
+      </div>
+    <!-- email輸入框 -->
+    <div class="form-group">
+      <div class="input-group mb-3 mt-3">
+        <span class="input-group-text" >
+          <i class="fa fa-envelope"></i>
+        </span>
+        <div class="form-floating" style=" width: 261px;">
+         <input type="email" name="email" class="form-control" placeholder="請輸入email" required> 
+         <label for="floatingInput">請輸入email</label>
+        </div>
+      </div>  
+    </div>
+
+           {% comment %} <!-- 顯示訊息  -->
+    <!-- 成功訊息 -->
+    <div class="container mt-3 ">
+      {% with messages = get_flashed_messages(category_filter=["success"]) %}
+     {% if messages %}
+     {% for message in messages %}
+     <div class="alert alert-success alert-dismissible" style="font-size: x-large;">
+       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+       {{message}}
+     </div> 
+      {% endfor %}
+
+      {% endif %}
+     {% endwith %}
+ </div> 
+ <!-- 警告訊息 -->
+ <div class="container mt-3 ">
+   {% with messages = get_flashed_messages(category_filter=["warning"]) %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible" style="font-size: x-large;">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{message}}
+  </div> 
+   {% endfor %}
+
+   {% endif %}
+  {% endwith %}
+</div>
+ <!-- 錯誤訊息 -->
+ <div class="container mt-3 ">
+   {% with messages = get_flashed_messages(category_filter=["danger"]) %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-danger alert-dismissible" style="font-size: x-large;">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{message}}
+  </div> 
+   {% endfor %}
+
+   {% endif %}
+  {% endwith %}
+</div>  {% endcomment %}
+        <button class="w-100 btn btn-lg btn-primary" type="submit">註冊</button>
+        
+      </form>
+ 
+    </main>
+</div>
+</body>
+</html>

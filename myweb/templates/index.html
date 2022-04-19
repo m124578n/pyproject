@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Neuromancer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+<link rel="shortcut icon" href="{% static 'images/reddit.png' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static 'css/home.css' %}" type="image/x-icon">
+</head>
+<body>
+
+ <!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-black  w3-padding-16 w3-card" id="myNavbar" style="height: 90px;">
+    <div class="w3-bar-left" >
+      <a href="#home" class="w3-bar-item"><img  src="{%static 'images/reddit.png'%}" alt="logo" width="30" height="30"></a>
+      <a href="#home" class="w3-bar-item w3-button" style="font-size: larger; font-weight: bold;"><b>Neuromancer</b></a>
+    </div>
+  
+    <!-- Right-sided navbar links -->
+    <a href="#home" class="w3-bar-item w3-button" style="margin-left: 430px; line-height: 16px;" ><h2><b>首頁</b> </h2></a>
+    <div class="w3-right w3-hide-small" >
+        <a href="signup" class="w3-bar-item w3-button"><i class="fa fa-user-plus fa-xl"></i>&nbsp;會員註冊</a>
+        <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-circle-question fa-xl"></i>&nbsp;關於我們</a>
+        <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-comment fa-xl"></i>&nbsp;聯絡我們</a>
+      </div>
+   
+  </div>
+</div>
+
+
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img  src="{%static 'images/stock.jpg'%}" alt="stock" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <a href="login"><h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;<b>登入會員開始預測股票</b></span> </h1></a>
+  </div>
+</header>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+  <h1 class="w3-center" ><b>關於我們</b> </h1>
+  <p class="w3-center w3-large"><img  src="{%static 'images/reddit.png'%}" alt="logo" width="30" height="30">&nbsp;Neuromancer</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">Responsive</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Passion</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Design</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Support</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h1 class="w3-center"><b>聯絡我們</b></h1>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div style="margin-top:48px">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Taiwan</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: 0123456789</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+    <br>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><textarea class="w3-input w3-border" type="text" placeholder="Message" required name="Message" style="resize: vertical;"></textarea></p>
+      <p>
+        <button class="w3-button w3-black" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+    
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center  w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>回到最上層</a>
+    <p><img  src="{% static 'images/reddit.png' %}" alt="logo" width="30" height="30">&nbsp;<b>Neuromancer</b></p>
+</footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
+</html>
