@@ -8,64 +8,83 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-<link rel="shortcut icon" href="{% static 'images/reddit.png' %}" type="image/x-icon">
-<link rel="shortcut icon" href="{% static 'css/home.css' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static '/images/logo.png' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static '/css/home.css' %}" type="image/x-icon">
 </head>
 <body>
 
  <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <div class="w3-bar w3-black  w3-padding-16 w3-card" id="myNavbar" style="height: 90px;">
+  <div class="w3-bar w3-black  w3-padding-16 w3-card" id="myNavbar" style="height: 100px;">
     <div class="w3-bar-left" >
-      <a href="#home" class="w3-bar-item"><img  src="{%static 'images/reddit.png'%}" alt="logo" width="30" height="30"></a>
-      <a href="#home" class="w3-bar-item w3-button" style="font-size: larger; font-weight: bold;"><b>Neuromancer</b></a>
+      <a href="{% url 'home' %}" class="w3-bar-item" style="margin-top: -15px;"><img  src="{%static '/images/logo.png'%}" alt="logo" width="40" height="40"></a>
+      <a href="{% url 'home' %}"  class="w3-bar-item w3-button" style="font-size: larger; font-weight: bold;"><b>Neuromancer</b></a>
     </div>
-  
+    {% if request.user.is_authenticated %}
+    <div class="w3-right " style="margin-top: 0px;" >
+      <a href="{% url 'Logout' %}" class="w3-bar-item w3-button"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;登出</a>
+      <a href="{% url 'index' %}" class="w3-bar-item w3-button"><i class="fa fa-user-plus fa-xl"></i>&nbsp;會員中心</a>
+      <select class="w3-bar-item w3-button" onchange="location.href=this.options[this.selectedIndex].value">
+        <option value="{% url 'index' %}">模型選擇</option>
+        <option value="{% url 'prs1' %}">FB預言家</a> </option>
+        <option value="{% url 'prs2' %}">機器學習</a> </option>
+        <option value="{% url 'prs3' %}">深度學習</a> </option>
+      </select>
+      <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-circle-question fa-xl"></i>&nbsp;關於我們</a>
+    </div>
+    {% else %}
     <!-- Right-sided navbar links -->
-    <a href="#home" class="w3-bar-item w3-button" style="margin-left: 430px; line-height: 16px;" ><h2><b>首頁</b> </h2></a>
-    <div class="w3-right w3-hide-small" >
-        <a href="signup" class="w3-bar-item w3-button"><i class="fa fa-user-plus fa-xl"></i>&nbsp;會員註冊</a>
+    <div class="w3-right "  style="margin-top: 0px;">
+        <a href="{% url 'login' %}" class="w3-bar-item w3-button"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;會員登入</a>
+        <a href="{% url 'register' %}"  class="w3-bar-item w3-button"><i class="fa fa-user-plus fa-xl"></i>&nbsp;會員註冊</a>
         <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-circle-question fa-xl"></i>&nbsp;關於我們</a>
-        <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-comment fa-xl"></i>&nbsp;聯絡我們</a>
-      </div>
-   
+    </div>
+    {% endif %}
   </div>
 </div>
 
 
 
 <!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img  src="{%static 'images/stock.jpg'%}" alt="stock" width="1500" height="800">
-  <div class="w3-display-middle w3-margin-top w3-center">
-    <a href="login"><h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;<b>登入會員開始預測股票</b></span> </h1></a>
+{% if request.user.is_authenticated %}
+<header class="w3-display-container w3-content w3-wide" style="max-width:150%;" id="home">
+  <img  src="{%static '/images/stock.jpg'%}" alt="stock" style=" width: 100% ">
+  <div class="w3-display-middle "  style="margin-top: 50px;" >
+    <a href="{% url 'prs1' %}"><h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;<b>你好{{user.username}}開始預測股票吧</b></span> </h1></a>
   </div>
 </header>
-
+{% else %}
+<header class="w3-display-container w3-content w3-wide" style="max-width:150%;" id="home">
+  <img  src="{%static '/images/stock.jpg'%}" alt="stock" style=" width: 100% ">
+  <div class="w3-display-middle " style="margin-top: 50px;">
+    <a href="{% url 'login' %}"><h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;<b>登入會員開始預測股票</b></span> </h1></a>
+  </div>
+</header>
+{% endif %}
 <!-- About Section -->
 <div class="w3-container" style="padding:128px 16px" id="about">
   <h1 class="w3-center" ><b>關於我們</b> </h1>
-  <p class="w3-center w3-large"><img  src="{%static 'images/reddit.png'%}" alt="logo" width="30" height="30">&nbsp;Neuromancer</p>
+  <p class="w3-center w3-large"><img  src="{%static '/images/logo.png'%}" alt="logo" width="50" height="50">&nbsp;Neuromancer</p>
   <div class="w3-row-padding w3-center" style="margin-top:64px">
     <div class="w3-quarter">
       <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
-      <p class="w3-large">Responsive</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <p class="w3-large"><h2>技能</h2></p>
+      <p>由資展中心訓練我們各種程式語言．</p>
     </div>
     <div class="w3-quarter">
       <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Passion</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <p class="w3-large"><h2>熱忱</h2></p>
+      <p>來自不同領域的我們期盼成為優秀的資訊工程師．</p>
     </div>
     <div class="w3-quarter">
       <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Design</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <p class="w3-large"><h2>發想</h2></p>
+      <p>此網站的目的在於提供股海中的大家多一個參考網站．</p>
     </div>
     <div class="w3-quarter">
       <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Support</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <p class="w3-large"><h2>學習</h2></p>
+      <p>此網站是我們身為資訊工程師的起點，我們還會更精實各類技能．</p>
     </div>
   </div>
 </div>
@@ -76,15 +95,16 @@
   <h1 class="w3-center"><b>聯絡我們</b></h1>
   <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
   <div style="margin-top:48px">
-    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Taiwan</p>
-    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: 0123456789</p>
-    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>location： Taiwan</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: 0906044647</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: m23568n@gmail.com</p>
     <br>
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
-      <p><textarea class="w3-input w3-border" type="text" placeholder="Message" required name="Message" style="resize: vertical;"></textarea></p>
+    <form action="{% url 'home' %}" method='POST' target="_blank">
+      {% csrf_token %}
+      <p><input class="w3-input w3-border" type="text"  name="Name" placeholder="Name" required ></p>
+      <p><input class="w3-input w3-border" type="text" name="Email" placeholder="Email" required ></p>
+      {% comment %} <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p> {% endcomment %}
+      <p><textarea class="w3-input w3-border" type="text" name="Message" placeholder="Message" required style="resize: vertical;"></textarea></p>
       <p>
         <button class="w3-button w3-black" type="submit">
           <i class="fa fa-paper-plane"></i> SEND MESSAGE
@@ -98,7 +118,7 @@
 <!-- Footer -->
 <footer class="w3-center  w3-black w3-padding-64">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>回到最上層</a>
-    <p><img  src="{% static 'images/reddit.png' %}" alt="logo" width="30" height="30">&nbsp;<b>Neuromancer</b></p>
+    <p><img  src="{% static '/images/logo.png' %}" alt="logo" width="30" height="30">&nbsp;<b>Neuromancer</b></p>
 </footer>
  
 <script>

@@ -23,7 +23,6 @@
       </div>
     
       <!-- Right-sided navbar links -->
-      <a href="#home" class="w3-bar-item w3-button" style="margin-left: 410px; line-height: 40px; " ><h2><b>會員註冊</b> </h2></a>
       <div class="w3-right w3-hide-small" >
           <a href="login" class="w3-bar-item w3-button"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;會員登入</a>
           <a href="/" class="w3-bar-item w3-button"><i class="fa fa-house-chimney fa-xl"></i>&nbsp;回首頁</a>
@@ -34,7 +33,7 @@
       <!-- main  -->
     <div class=" text-center main" style="margin-top: 100px;">
     <main class="form-signup">
-      <form method=post  autocomplete="off">
+      <form method=post action="" autocomplete="off">
         <p><img  src="{%  static 'images/reddit.png' %}" alt="logo" width="50" height="50"></p>
         <h1 class="h3 mb-3 fw-normal"><b>會員註冊</b> </h1>
            <!-- 帳號輸入框 -->
@@ -44,64 +43,12 @@
             <i class="fa fa-user"></i>
           </span>
           <div class="form-floating" style=" width: 263px;">
-            <input type="text" name="account" class="form-control" placeholder="請輸入帳號" required >
+            <input type="text" name="username" class="form-control" placeholder="請輸入帳號" required >
             <label for="floatingInput">請輸入帳號</label>
           </div>
         </div>  
       </div>
-         <!-- 密碼輸入框 -->
-       <div class="form-group">
-        <div class="input-group mb-3">
-          <span class="input-group-text" >
-            <i class="fa fa-lock"></i>
-          </span>
-          <div class="form-floating" style=" width: 221px;">
-          <input type="password" name="password" class="pwd form-control" placeholder="請輸入密碼" required> 
-          <label for="floatingInput">請輸入密碼</label>
-        </div>
-          <span class="input-group-text " >
-            <a  style="color: black;" onclick="show()" >
-              <i class="fa fa-eye-slash icon" ></i>
-            </a>
-          </span>
-        </div>          
-     </div>
-       <!-- 姓名輸入框 -->
-     <div class="form-group">
-      <div class="input-group mb-3 mt-3">
-        <span class="input-group-text" >
-          <i class="fa fa-signature"></i>
-        </span>
-        <div class="form-floating" style=" width: 257.5px;">
-         <input type="text" name="username" class="form-control" placeholder="請輸入姓名">
-         <label for="floatingInput">請輸入姓名</label>
-        </div>
-      </div>  
-    </div>
-    <!-- 生日輸入框 -->
-    <div class="form-group">
-        <div class="input-group mb-3 mt-3">
-          <span class="input-group-text" >
-            <i class="fa fa-calendar"></i>
-          </span>
-          <div  style=" width: 263px;">
-           <input type="date" name="username" class="form-control" >
-          </div>
-        </div>  
-      </div>
-      <!-- 電話輸入框 -->
-      <div class="form-group">
-        <div class="input-group mb-3">
-          <span class="input-group-text" >
-            <i class="fa fa-phone"></i>
-          </span>
-          <div class="form-floating" style=" width: 261px;">
-            <input type="text" name="account" class="form-control" placeholder="請輸入電話" required >
-            <label for="floatingInput">請輸入電話</label>
-          </div>
-        </div>  
-      </div>
-    <!-- email輸入框 -->
+      <!-- email輸入框 -->
     <div class="form-group">
       <div class="input-group mb-3 mt-3">
         <span class="input-group-text" >
@@ -113,6 +60,86 @@
         </div>
       </div>  
     </div>
+         <!-- 密碼輸入框 -->
+       <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text" >
+            <i class="fa fa-lock"></i>
+          </span>
+          <div class="form-floating" style=" width: 221px;">
+          <input type="password" name="password1" class="pwd form-control" placeholder="請輸入密碼" required> 
+          <label for="floatingInput">請輸入密碼</label>
+        </div>
+          <span class="input-group-text " >
+            <a  style="color: black;" onclick="show()" >
+              <i class="fa fa-eye-slash icon" ></i>
+            </a>
+          </span>
+        </div>          
+        <!-- 密碼輸入框 -->
+       <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text" >
+            <i class="fa fa-lock"></i>
+          </span>
+          <div class="form-floating" style=" width: 221px;">
+          <input type="password" name="password2" class="pwd form-control" placeholder="請輸入密碼" required> 
+          <label for="floatingInput">請確認密碼</label>
+        </div>
+          <span class="input-group-text " >
+            <a  style="color: black;" onclick="show()" >
+              <i class="fa fa-eye-slash icon" ></i>
+            </a>
+          </span>
+        </div>    
+     </div>
+       {% comment %} <!-- 姓名輸入框 -->
+     <div class="form-group">
+      <div class="input-group mb-3 mt-3">
+        <span class="input-group-text" >
+          <i class="fa fa-signature"></i>
+        </span>
+        <div class="form-floating" style=" width: 257.5px;">
+         <input type="text" name="username" class="form-control" placeholder="請輸入姓名">
+         <label for="floatingInput">請輸入姓名</label>
+        </div>
+      </div>  
+    </div> {% endcomment %}
+    <!-- 生日輸入框 -->
+    {% comment %} <div class="form-group">
+        <div class="input-group mb-3 mt-3">
+          <span class="input-group-text" >
+            <i class="fa fa-calendar"></i>
+          </span>
+          <div  style=" width: 263px;">
+           <input type="date" name="username" class="form-control" >
+          </div>
+        </div>  
+      </div> {% endcomment %}
+      <!-- 電話輸入框 -->
+      {% comment %} <div class="form-group">
+        <div class="input-group mb-3">
+          <span class="input-group-text" >
+            <i class="fa fa-phone"></i>
+          </span>
+          <div class="form-floating" style=" width: 261px;">
+            <input type="text" name="account" class="form-control" placeholder="請輸入電話" required >
+            <label for="floatingInput">請輸入電話</label>
+          </div>
+        </div>  
+      </div> {% endcomment %}
+    <!-- email輸入框 -->
+    {% comment %} <div class="form-group">
+      <div class="input-group mb-3 mt-3">
+        <span class="input-group-text" >
+          <i class="fa fa-envelope"></i>
+        </span>
+        <div class="form-floating" style=" width: 261px;">
+         <input type="email" name="email" class="form-control" placeholder="請輸入email" required> 
+         <label for="floatingInput">請輸入email</label>
+        </div>
+      </div>  
+    </div> {% endcomment %}
 
            {% comment %} <!-- 顯示訊息  -->
     <!-- 成功訊息 -->

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+<link rel="stylesheet" type="text/css" href="{%  static '/css/login.css'%}">
+<script src="{ % static '/js/eye.js' %}"></script>
+<link rel="shortcut icon" href="{ % static  '/images/logo.png' %}" type="image/x-icon">
+    <title>股票預測</title>
+</head>
+<body>
+        <div class="w3-top" >
+                <div class="w3-bar w3-black  w3-padding-16 w3-card" id="myNavbar" style="height: 100px;" >
+                  <div class="w3-bar-left" >
+                    <a href="{% url 'home' %}" class="w3-bar-item" style="margin-top: -15px;"><img  src="{% static '/images/logo.png' %}" alt="logo" width="40" height="40"></a>
+                    <a href="{% url 'home' %}" class="w3-bar-item w3-button" style="font-size: larger; font-weight: bold;"><b>Neuromancer</b></a>
+                  </div>
+                
+                  <!-- Right-sided navbar links -->
+                  <div class="w3-right " >
+                        <a href="{% url 'Logout' %}" class="w3-bar-item w3-button"><i class="fa fa-right-to-bracket fa-xl"></i>&nbsp;登出</a>
+                        <a href="{% url 'index' %}" class="w3-bar-item w3-button"><i class="fa fa-user-plus fa-xl"></i>&nbsp;會員中心</a>
+                      <select class="w3-bar-item w3-button" onchange="location.href=this.options[this.selectedIndex].value">
+                        <option value="{% url 'index' %}">模型選擇</option>
+                        <option value="{% url 'prs1' %}">FB預言家</a> </option>
+                        <option value="{% url 'prs2' %}">機器學習</a> </option>
+                        <option value="{% url 'prs3' %}">深度學習</a> </option>
+                      </select>
+                      <a href="{% url 'home' %}"class="w3-bar-item w3-button"><i class="fa fa-house-chimney fa-xl"></i>&nbsp;回首頁</a>
+                    </div>
+                 
+                </div>
+        </div>
+</body>
+<body>
+ <div class=" text-center main" style="margin-top: 100px;">
+        <main class="form-signin">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h3> 
+        <div class="w3-bar-item w3-h1">FBprophet預言家模型
+        </div>
+        </h3>
+        <h1> 
+        <div class="w3-bar-item w3-h1">請輸入股票代號
+        </div>
+        </h1>
+        <br>
+	<p>
+
+        <div class="form-floating" style=" width:180px;margin-left: 60px">
+                <input type="text" name="a" class="form-control"   value='' >
+	        <label for="floatingInput">example : {{ ddd_dd }}</label>
+        
+        </div>
+        
+        </p>
+        <p><h3>{{message}}</h3></p>
+        <br>
+	<p>
+        <h4>
+        <input type="submit" value="開始預測!">
+        </h4>
+	</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </form>
+ </body>
+</div> 
+
+<div class=" text-center main">
+        <p><h1>{{ pr }}</h1></p>
+</div>
+<div>
+ <body style="height: 100%; margin: 0">
+        <form action="" method="post">
+        
+        <div id="container2" style="height: 500%"></div>
+       
+        
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
+       
+        <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> 
+        
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/extension/bmap.min.js"></script>
+        -->
+      
+        <script type="text/javascript">
+        
+                var dom = document.getElementById('container2');
+                var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+                });
+                var app = {};
+                
+                var option;
+                var ds = {{ ds|safe }};
+                var y1 = {{ y1|safe }};
+                var y2 = {{ y2|safe }};
+                var y3 = {{ y3|safe }};
+                var rd = {{ rd|safe }};
+
+                option = {
+                        backgroundColor:'#87CEFA',
+                        
+                        title: {
+                                text: 'fbprophet'
+                              },
+                              tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                        type: 'cross',
+                                        label: {
+                                            backgroundColor: '#6a7985'
+                                        }
+                                    }
+                              },
+                              legend: {
+                                data: ['預測值', '信賴區間上限', '信賴區間下限']
+                              },
+                              grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                              },
+
+                        xAxis: {
+                          type: 'category',
+                          boundaryGap: false,
+                          data: ds
+                        },
+                        yAxis: {
+                          type: 'value'
+                        },
+                        series: [
+                                {
+                                        name:"信賴區間上限",    
+                                        data: y2,
+                                        type: 'line',
+                                        areaStyle:{
+                                            color:'#ffffff',
+                                            origin:'end'
+                                    },
+                                        color:'#87CEFA'
+                                      },
+                          {
+                            name:"預測值" ,     
+                            data: y1,
+                            type: 'line',
+                            color:"red",
+                            
+                          },
+                          {
+                            name:"信賴區間下限",      
+                            data: y3,
+                            type: 'line',
+                            areaStyle:{
+                                color:'#ffffff',
+                                origin:'start'
+                            },
+                            color:'#87CEFA'
+                              },
+                              {
+                                      name:'實際股票價格',
+                                      data:rd,
+                                      type:'scatter',
+                                      symbolSize:20,
+
+                              },
+                        
+                        ]
+                      };
+
+                
+                        if (option && typeof option === 'object') {
+                        myChart.setOption(option);
+                        }
+                
+                        window.addEventListener('resize', myChart.resize);
+        </script>
+
+        </form>
+      </body>
+</div>
+<div class=" text-center main">
+        <p><h1>{{ std }}</h1></p>
+</div>
+<div>
+ <body style="height: 100%; margin: 0">
+        <form action="" method="post">
+        
+        <div id="container" style="height: 500%"></div>
+       
+        
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
+       
+        <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> 
+        
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/extension/bmap.min.js"></script>
+        -->
+      
+        <script type="text/javascript">
+        
+                var dom = document.getElementById('container');
+                var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+                });
+                var app = {};
+                
+                var option;
+                var data2 = {{ data2|safe }};
+                const upColor = '#ec0000';
+                const upBorderColor = '#8A0000';
+                const downColor = '#00da3c';
+                const downBorderColor = '#008F28';
+                var data2 = {{ data2|safe }}; 
+                // Each item: open，close，lowest，highest
+                const data0 = splitData(data2);
+                function splitData(rawData) {
+                        const categoryData = [];
+                        const values = [];
+                        for (var i = 0; i < rawData.length; i++) {
+                        categoryData.push(rawData[i].splice(0, 1)[0]);
+                        values.push(rawData[i]);
+                        }
+                        return {
+                        categoryData: categoryData,
+                        values: values
+                        };
+                }
+                function calculateMA(dayCount) {
+                        var result = [];
+                        for (var i = 0, len = data0.values.length; i < len; i++) {
+                        if (i < dayCount) {
+                        result.push('-');
+                        continue;
+                        }
+                        var sum = 0;
+                        for (var j = 0; j < dayCount; j++) {
+                        sum += +data0.values[i - j][1];
+                        }
+                        result.push(sum / dayCount);
+                        }
+                        return result;
+                }
+                option = {
+                        title: {
+                        text: '歷史資訊',
+                        left: 0
+                        },
+                        tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                        type: 'cross'
+                        }
+                        },
+                        legend: {
+                        data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
+                        },
+                        grid: {
+                        left: '10%',
+                        right: '10%',
+                        bottom: '15%'
+                        },
+                        xAxis: {
+                        type: 'category',
+                        data: data0.categoryData,
+                        boundaryGap: false,
+                        axisLine: { onZero: false },
+                        splitLine: { show: false },
+                        min: 'dataMin',
+                        max: 'dataMax'
+                        },
+                        yAxis: {
+                        scale: true,
+                        splitArea: {
+                        show: true
+                        }
+                        },
+                        dataZoom: [
+                        {
+                        type: 'inside',
+                        start: 50,
+                        end: 100
+                        },
+                        {
+                        show: true,
+                        type: 'slider',
+                        top: '90%',
+                        start: 50,
+                        end: 100
+                        }
+                        ],
+                        series: [
+                        {
+                        name: '日K',
+                        type: 'candlestick',
+                        data: data0.values,
+                        itemStyle: {
+                        color: upColor,
+                        color0: downColor,
+                        borderColor: upBorderColor,
+                        borderColor0: downBorderColor
+                        },
+                        markPoint: {
+                        label: {
+                                formatter: function (param) {
+                                return param != null ? Math.round(param.value) + '' : '';
+                                }
+                        },
+                        data: [
+                                {
+                                name: 'Mark',
+                                coord: ['2013/5/31', 2300],
+                                value: 2300,
+                                itemStyle: {
+                                color: 'rgb(41,60,85)'
+                                }
+                                },
+                                {
+                                name: 'highest value',
+                                type: 'max',
+                                valueDim: 'highest'
+                                },
+                                {
+                                name: 'lowest value',
+                                type: 'min',
+                                valueDim: 'lowest'
+                                },
+                                {
+                                name: 'average value on close',
+                                type: 'average',
+                                valueDim: 'close'
+                                }
+                        ],
+                        tooltip: {
+                                formatter: function (param) {
+                                return param.name + '<br>' + (param.data.coord || '');
+                                }
+                        }
+                        },
+                        markLine: {
+                        symbol: ['none', 'none'],
+                        data: [
+                                [
+                                {
+                                name: 'from lowest to highest',
+                                type: 'min',
+                                valueDim: 'lowest',
+                                symbol: 'circle',
+                                symbolSize: 10,
+                                label: {
+                                show: false
+                                },
+                                emphasis: {
+                                label: {
+                                        show: false
+                                }
+                                }
+                                },
+                                {
+                                type: 'max',
+                                valueDim: 'highest',
+                                symbol: 'circle',
+                                symbolSize: 10,
+                                label: {
+                                show: false
+                                },
+                                emphasis: {
+                                label: {
+                                        show: false
+                                }
+                                }
+                                }
+                                ],
+                                {
+                                name: 'min line on close',
+                                type: 'min',
+                                valueDim: 'close'
+                                },
+                                {
+                                name: 'max line on close',
+                                type: 'max',
+                                valueDim: 'close'
+                                }
+                        ]
+                        }
+                        },
+                        {
+                        name: 'MA5',
+                        type: 'line',
+                        data: calculateMA(5),
+                        smooth: true,
+                        lineStyle: {
+                        opacity: 0.5
+                        }
+                        },
+                        {
+                        name: 'MA10',
+                        type: 'line',
+                        data: calculateMA(10),
+                        smooth: true,
+                        lineStyle: {
+                        opacity: 0.5
+                        }
+                        },
+                        {
+                        name: 'MA20',
+                        type: 'line',
+                        data: calculateMA(20),
+                        smooth: true,
+                        lineStyle: {
+                        opacity: 0.5
+                        }
+                        },
+                        {
+                        name: 'MA30',
+                        type: 'line',
+                        data: calculateMA(30),
+                        smooth: true,
+                        lineStyle: {
+                        opacity: 0.5
+                        }
+                        }
+                        ]
+                };
+                
+                        if (option && typeof option === 'object') {
+                        myChart.setOption(option);
+                        }
+                
+                        window.addEventListener('resize', myChart.resize);
+        </script>
+
+        </form>
+      </body>
+</div>
+
+ <footer class="w3-center  w3-black w3-padding-64" >
+                <p><img  src="{% static '/images/logo.png' %}" alt="logo" width="30" height="30">&nbsp;<b>Neuromancer</b></p>
+        </footer>
+
+</html>
